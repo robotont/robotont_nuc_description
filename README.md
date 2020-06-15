@@ -1,4 +1,4 @@
-# robotont_nuc_description
+# robotont\_nuc\_description
 
 Description package for robotont with realsense that contains meshes, URDF and xacro files.
 
