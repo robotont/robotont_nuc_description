@@ -1,9 +1,14 @@
 # robotont\_nuc\_description
 
-Description package for robotont with realsense that contains meshes, URDF and xacro files.
+Description package for ROBOTONT with an on-board NUC and RealSense D435 depth camera.
 
-Visualizing the robot on Rviz:
-- Install realsense description:<br/>
+Prerequisites:
+* Install Intel RealSense description:<br/>
 ```sudo apt install ros-melodic-realsense2-description```
-- Run the launch file:<br/>
+
+Visualizing the robot model in RViz
+* For the simulated robot:<br/>
 ```roslaunch robotont_nuc_description display_simulated_robot.launch```
+
+* For the real robot:<br/>
+```roslaunch robotont_nuc_description display_real_robot.launch```
