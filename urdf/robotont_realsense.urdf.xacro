@@ -2,6 +2,8 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
 	<xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
     <xacro:include filename="$(find robotont_description)/urdf/robotont_base.urdf.xacro"/>
+    <xacro:arg name="use_nominal_extrinsics" default="False" />
+    <xacro:arg name= "add_plug" default="False" />
     <xacro:property name= "prefix" value="$(arg prefix)"/>
     <xacro:sensor_d435 parent="${prefix}base_link">
         <origin xyz="-0.12 0 0.21" rpy="0 0 0"/>
