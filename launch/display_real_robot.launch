@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <launch>
-	<param name="robot_description" command="$(find xacro)/xacro '$(find robotont_nuc_description)/urdf/robotont_realsense.urdf.xacro' use_nominal_extrinsics:=false"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robotont_nuc_description)/urdf/robotont_realsense.urdf.xacro" />
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robotont_nuc_description)/config/robotont_realsense.rviz"/>
 </launch>
