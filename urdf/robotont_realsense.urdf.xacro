@@ -5,14 +5,46 @@
     <xacro:arg name= "add_plug" default="false"/>
     <xacro:arg name= "simulated" default="false"/>
     <xacro:property name= "prefix" value="$(arg prefix)"/>
+    <!-- Camera assembly -->
+    <link name="${prefix}camera_assembly_link1">
+        <visual>
+            <geometry>
+                <mesh scale="0.001 0.001 0.001" filename="package://robotont_nuc_description/meshes/camera_assembly_part1.stl"/>
+            </geometry>
+            <material name="frame_material">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="${prefix}camera_assembly_joint1" type="fixed">
+        <parent link="${prefix}base_footprint"/>
+        <child link="${prefix}camera_assembly_link1"/>
+        <origin xyz="0 0 0.0125" rpy="0 0 ${pi/2}"/>
+    </joint>
+    <link name="${prefix}camera_assembly_link2">
+        <visual>
+            <geometry>
+                <mesh scale="0.001 0.001 0.001" filename="package://robotont_nuc_description/meshes/camera_assembly_part2.stl"/>
+            </geometry>
+            <material name="base_material">
+                <color rgba="1 1 1 0.8"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="${prefix}camera_assembly_joint2" type="fixed">
+        <parent link="${prefix}base_footprint"/>
+        <child link="${prefix}camera_assembly_link2"/>
+        <origin xyz="0 0 0.0125" rpy="0 0 ${pi/2}"/>
+    </joint>
+    <!-- Realsense -->
     <xacro:if value="$(arg simulated)">
         <xacro:sensor_d435 parent="${prefix}base_link" use_nominal_extrinsics="true">
-            <origin xyz="-0.12 0 0.21" rpy="0 0 0"/>
+            <origin xyz="-0.115 0 0.2025" rpy="0 0 0"/>
         </xacro:sensor_d435>
     </xacro:if>
     <xacro:unless value="$(arg simulated)">
         <xacro:sensor_d435 parent="${prefix}base_link" use_nominal_extrinsics="false">
-            <origin xyz="-0.12 0 0.21" rpy="0 0 0"/>
+            <origin xyz="-0.115 0 0.2025" rpy="0 0 0"/>
         </xacro:sensor_d435>
     </xacro:unless>
     <!-- Computer -->
