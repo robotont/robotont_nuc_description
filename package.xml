@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>robotont_nuc_description</name>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
   <description>The robotont_nuc_description package</description>
 
   <author>Maarika Oidekivi</author>
