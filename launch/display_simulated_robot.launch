@@ -1,7 +1,16 @@
 <?xml version="1.0" ?>
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robotont_nuc_description)/urdf/robotont_realsense.urdf.xacro" />
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robotont_nuc_description)/config/robotont_realsense.rviz"/>
+  <arg name="__ns" default=""/>
+  <arg name="rviz_fixed_frame" default="base_link"/>
+  
+  <!-- '__ns' is needed as an explicit argument because it does not propagate as an argument to the included launch files -->
+  <include file="$(find robotont_nuc_description)/launch/upload_description.launch">
+    <arg name="__ns" value="$(arg __ns)"/>
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find robotont_nuc_description)/config/robotont_realsense.rviz -f $(arg rviz_fixed_frame)"/>
 </launch>
+
