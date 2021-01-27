@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="__ns" default=""/> <!-- As eval may not contain double underscore expressions, a new argument is defined to by-pass this issue. -->
-  <arg name="eval_underscore_bypass" value="$(arg __ns)"/> <!-- When a namespace is specified, it is also converted into prefix with a trailing underscore. -->
+  <arg name="eval_underscore_bypass" value="$(arg __ns)"/> <!-- When a namespace is specified, it is also converted into prefix with a trailing slash. -->
   <arg if="$(eval eval_underscore_bypass == '')" name="prefix" default=''/> 
-  <arg unless="$(eval eval_underscore_bypass == '')" name="prefix" default="$(arg __ns)_"/>
+  <arg unless="$(eval eval_underscore_bypass == '')" name="prefix" default="$(arg __ns)/"/>
 
   <param name="robot_description" command="$(find xacro)/xacro $(find robotont_nuc_description)/urdf/robotont_realsense.urdf.xacro prefix:=$(arg prefix)"/>
 </launch>
