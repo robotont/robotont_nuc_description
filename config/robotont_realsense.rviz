@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /Axes1
       Splitter Ratio: 0.5
     Tree Height: 726
   - Class: rviz/Selection
@@ -69,6 +68,30 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_assembly_link1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_assembly_link2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        computer_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -304,13 +327,6 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/Axes
-      Enabled: true
-      Length: 0.20000000298023224
-      Name: Axes
-      Radius: 0.019999999552965164
-      Reference Frame: base_link
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -376,4 +392,4 @@ Window Geometry:
     collapsed: true
   Width: 1196
   X: 627
-  Y: 0
+  Y: 27
