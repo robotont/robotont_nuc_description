@@ -1,6 +1,6 @@
 # robotont\_nuc\_description
 
-Description package for ROBOTONT with an on-board NUC and RealSense D435 depth camera.
+Description package for ROBOTONT with an on-board NUC and RealSense D435i depth camera.
 
 [![Build Status](https://travis-ci.org/robotont/robotont_nuc_description.svg?branch=melodic-devel)](https://travis-ci.org/robotont/robotont_nuc_description)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
