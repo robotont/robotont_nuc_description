@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
     <xacro:include filename="$(find robotont_description)/urdf/robotont_base.urdf.xacro"/>
     <xacro:arg name= "add_plug" default="false"/>
     <xacro:arg name= "simulated" default="false"/>
@@ -37,14 +37,14 @@
     </joint>
     <!-- Realsense -->
     <xacro:if value="$(arg simulated)">
-        <xacro:sensor_d435 name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="true">
+        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="true">
             <origin xyz="-0.115 0 0.2025" rpy="0 0 0"/>
-        </xacro:sensor_d435>
+        </xacro:sensor_d435i>
     </xacro:if>
     <xacro:unless value="$(arg simulated)">
-        <xacro:sensor_d435 name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="false">
+        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="false">
             <origin xyz="-0.115 0 0.2025" rpy="0 0 0"/>
-        </xacro:sensor_d435>
+        </xacro:sensor_d435i>
     </xacro:unless>
     <!-- Computer -->
     <link name="${prefix}computer_link">
