@@ -17,7 +17,9 @@
   </include>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="rate" value="50"/>
+  </node>
 
   <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find robotont_nuc_description)/config/robotont_realsense.rviz -f $(arg rviz_fixed_frame)"/>
 </launch>
