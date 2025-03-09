@@ -1,29 +1,18 @@
-name: ROS 2 Package CI
+name: build
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@v0.6
         with:
-          distribution: jazzy
+          path: workspace
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install python3-colcon-common-extensions
-          sudo apt install -y ros-jazzy-ros-base
-          rosdep update
-          rosdep install --from-paths src --ignore-src -r -y
-
-      - name: Build the package
-        run: |
-          source /opt/ros/jazzy/setup.bash
-          colcon build --event-handlers console_cohesion+
+      - name: Build ROS 2 Workspace
+        uses: ichiro-its/ros2-ws-action@v1.0.0
+        with:
+          distro: jazzy

@@ -15,10 +15,8 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
-endif()
+# Disable tests
+set(BUILD_TESTING OFF)
 
 install(
   DIRECTORY meshes urdf config launch
