@@ -46,6 +46,11 @@ colcon build --packages-select robotont_nuc_description
 source ~/<YOUR_WORKSPACE_NAME_HERE>/install/setup.bash
 ```
 ### **2. Available launch files**
+Supported parameters:
+
+| Name         | Default | Description                                                                             |
+|--------------|---------|-----------------------------------------------------------------------------------------|
+| `generation` | `3`     | Specify the generation of robotont model that is to be loaded (2.1 and 3 are supported) |
 #### 2.1. Display simulated robot
 Displays the robot's model in rviz, starts joint_state_publisher and robot_state_publisher
 ```bash
