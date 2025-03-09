@@ -14,8 +14,8 @@ jobs:
 
       - name: Configure VCS
         run: |
-          sudo apt update
-          sudo apt install -y python3-vcstool
+          python3 -m pip install --upgrade pip
+          pip install vcstool
 
       - name: Fetch dependencies
         run: |
