@@ -1,6 +1,6 @@
 name: build
 
-on: [push, pull_request, workflow_dispatch]
+on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   build:
@@ -12,12 +12,17 @@ jobs:
         with:
           path: workspace
 
-      - name: Fetch Dependencies
+      - name: Configure VCS
+        run: |
+          sudo apt update
+          sudo apt install -y python3-vcstool
+
+      - name: Fetch dependencies
         run: |
           cd workspace
           vcs import src < dependencies.repos
 
-      - name: Build ROS 2 Workspace
+      - name: Build ROS2 Workspace
         uses: ichiro-its/ros2-ws-action@v1.0.0
         with:
           distro: jazzy
