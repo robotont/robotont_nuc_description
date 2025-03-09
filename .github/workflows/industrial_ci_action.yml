@@ -1,22 +1,29 @@
-name: CI
+name: ROS 2 Package CI
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  industrial_ci:
-    env:
-      ROS_REPO: ros
-      #UPSTREAM_WORKSPACE: ".ci.rosinstall"
-      #CCACHE_DIR: $HOME/.ccache
-    strategy:
-      matrix:
-        env:
-          - {ROS_DISTRO: noetic, ROS_REPO: main}
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - uses: 'ros-industrial/industrial_ci@master'
-        env: ${{matrix.env}}
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
+      - name: Setup ROS 2
+        uses: ros-tooling/setup-ros@v0.6
+        with:
+          distribution: jazzy
 
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install python3-colcon-common-extensions
+          sudo apt install -y ros-jazzy-ros-base
+          rosdep update
+          rosdep install --from-paths src --ignore-src -r -y
 
+      - name: Build the package
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build --event-handlers console_cohesion+

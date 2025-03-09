@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<robot
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="nuc_frame_length" value="0.16"/>
+    <xacro:property name="nuc_frame_width" value="0.13"/>
+    <xacro:property name="nuc_frame_height" value="0.053"/>
+    <xacro:property name="nuc_color" value="0.26 0.26 0.26 1.0"/>
+
+    <xacro:macro name="nuc_macro" params="color frame_ground_clearance frame_height prefix">
+        <xacro:property name="ground_clearance" value="${frame_ground_clearance + frame_height}"/>
+
+        <link name="${prefix}nuc_frame_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robotont_nuc_description/meshes/gen2_1/payload_tray.STL"/>
+                </geometry>
+                <material name="nuc_frame_material">
+                    <color rgba="${color}"/>
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${nuc_frame_width} ${nuc_frame_height} ${nuc_frame_length}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="nuc_frame_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}nuc_frame_link"/>
+            <axis xyz="0 0 1"/>
+            <origin
+                xyz="0 0 ${ground_clearance + nuc_frame_height / 2}"
+                rpy="${pi / 2} 0 ${pi / 2}"
+            />
+        </joint>
+
+        <link name="${prefix}nuc_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robotont_nuc_description/meshes/shared/NUC12WSK.STL"/>
+                </geometry>
+                <material name="nuc_material">
+                    <color rgba="${nuc_color}"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="nuc_joint" type="fixed">
+            <parent link="${prefix}nuc_frame_link"/>
+            <child link="${prefix}nuc_link"/>
+            <axis xyz="0 0 1"/>
+            <origin xyz="0 -0.007 -0.005"/>
+        </joint>
+    </xacro:macro>
+</robot>

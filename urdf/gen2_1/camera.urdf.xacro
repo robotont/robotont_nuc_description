@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="camera_mount_height" value="0.167"/>
+    <xacro:property name="camera_mount_length" value="0.0701"/>
+    <xacro:property name="camera_mount_width" value="0.102"/>
+    <xacro:property name="base_height" value="0.06"/>
+
+    <xacro:macro name="camera_macro" params="color accent frame_ground_clearance frame_height prefix">
+        <xacro:property name="ground_clearance" value="${frame_ground_clearance + frame_height}"/>
+
+        <link name="${prefix}camera_assembly_link1">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robotont_nuc_description/meshes/gen2_1/camera_assembly_part1.STL"/>
+                </geometry>
+                <material name="camera_frame_material">
+                    <color rgba="${accent}"/>
+                </material>
+            </visual>
+        </link>
+        <joint name="${prefix}camera_assembly_joint1" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}camera_assembly_link1"/>
+            <origin xyz="-0.132 0 ${ground_clearance + camera_mount_height / 2}" rpy="0 0 ${pi/2}"/>
+        </joint>
+        <link name="${prefix}camera_assembly_link2">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robotont_nuc_description/meshes/gen2_1/camera_assembly_part2.STL"/>
+                </geometry>
+                <material name="camera_base_material">
+                    <color rgba="${color}"/>
+                </material>
+            </visual>
+        </link>
+        <joint name="${prefix}camera_assembly_joint2" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}camera_assembly_link2"/>
+            <origin xyz="-0.11 0 ${ground_clearance + base_height / 2 - 0.005}" rpy="0 0 ${pi/2}"/>
+        </joint>
+    </xacro:macro>
+</robot>

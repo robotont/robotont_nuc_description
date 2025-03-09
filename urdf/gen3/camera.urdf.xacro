@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<robot
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="camera_mount_height" value="0.1486"/>
+    <xacro:property name="camera_mount_length" value="0.0701"/>
+    <xacro:property name="camera_mount_width" value="0.102"/>
+    <xacro:property name="bolt_height" value="0.0085"/>
+    <xacro:property name="camera_color" value="0.961 0.961 0.961 1.0"/>
+    <xacro:property name="camera_height" value="0.025"/>
+
+    <xacro:macro name="camera_macro" params="color frame_ground_clearance frame_height prefix">
+        <xacro:property name="ground_clearance" value="${frame_ground_clearance + frame_height}"/>
+
+        <link name="${prefix}camera_mount_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://robotont_nuc_description/meshes/gen3/camera_module.STL"/>
+                </geometry>
+                <material name="camera_mount_material">
+                    <color rgba="${color}"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 -0.01"/>
+                <geometry>
+                    <box size="${camera_mount_width} ${camera_mount_height} ${camera_mount_length / 1.5}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="camera_mount_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}camera_mount_link"/>
+            <axis xyz="0 0 1"/>
+            <origin
+                xyz="-0.0955 0 ${ground_clearance + camera_mount_height / 2 - bolt_height}"
+                rpy="${pi / 2} 0 ${pi / 2}"
+            />
+        </joint>
+    </xacro:macro>
+</robot>

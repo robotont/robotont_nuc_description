@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+    <xacro:include filename="$(find robotont_description)/urdf/gen2_1/robotont.urdf.xacro"/>
+    <xacro:include filename="$(find robotont_nuc_description)/urdf/gen2_1/camera.urdf.xacro"/>
+    <xacro:include filename="$(find robotont_nuc_description)/urdf/gen2_1/nuc.urdf.xacro"/>
+    <xacro:arg name= "add_plug" default="false"/>
+    <xacro:arg name= "simulated" default="false"/>
+
+    <xacro:property name="frame_height" value="0.065"/>
+    <xacro:property name="frame_ground_clearance" value="0.008"/>
+    <xacro:property name="nuc_frame_color" value="1.0 1.0 1.0 0.6"/>
+    <xacro:property name="camera_mount_color" value="1.0 1.0 1.0 0.6"/>
+    <xacro:property name="camera_mount_2_color" value="0.75 0.75 0.75 1.0"/>
+
+    <!-- Camera assembly -->
+    <xacro:camera_macro
+        color="${camera_mount_color}"
+        accent="${camera_mount_2_color}"
+        frame_height="${frame_height}"
+        frame_ground_clearance="${frame_ground_clearance}"
+        prefix="${prefix}"
+    />
+
+    <!-- Realsense -->
+    <xacro:if value="$(arg simulated)">
+        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="true">
+            <origin xyz="-0.115 0 0.213" rpy="0 0 0"/>
+        </xacro:sensor_d435i>
+    </xacro:if>
+    <xacro:unless value="$(arg simulated)">
+        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="false">
+            <origin xyz="-0.115 0 0.213" rpy="0 0 0"/>
+        </xacro:sensor_d435i>
+    </xacro:unless>
+
+    <!-- NUC -->
+    <xacro:nuc_macro
+        color="${nuc_frame_color}"
+        frame_height="${frame_height}"
+        frame_ground_clearance="${frame_ground_clearance}"
+        prefix="${prefix}"
+    />
+</robot>
