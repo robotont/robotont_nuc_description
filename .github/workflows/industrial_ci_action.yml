@@ -20,6 +20,7 @@ jobs:
       - name: Fetch dependencies
         run: |
           cd workspace
+          mkdir src
           vcs import src < dependencies.repos
 
       - name: Build ROS2 Workspace
