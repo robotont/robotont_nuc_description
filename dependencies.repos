@@ -1,0 +1,5 @@
+repositories:
+  robotont_description:
+    type: git
+    url: https://github.com/robotont/robotont_description.git
+    version: jazzy-devel-sygis

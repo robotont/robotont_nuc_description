@@ -12,6 +12,11 @@ jobs:
         with:
           path: workspace
 
+      - name: Fetch Dependencies
+        run: |
+          cd workspace
+          vcs import src < dependencies.repos
+
       - name: Build ROS 2 Workspace
         uses: ichiro-its/ros2-ws-action@v1.0.0
         with:
