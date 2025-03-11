@@ -12,18 +12,21 @@ jobs:
         with:
           path: workspace
 
-      - name: Configure VCS
+      - name: Configure VCS and fetch dependencies
         run: |
           python3 -m pip install --upgrade pip
           pip install vcstool
-
-      - name: Fetch dependencies
-        run: |
           cd workspace
           mkdir src
           vcs import src < dependencies.repos
 
+      - name: Setup dependencies
+        run: |
+          sudo rosdep init || true
+          rosdep update
+          rosdep install --from-paths src --ignore-src -y
+
       - name: Build ROS2 Workspace
-        uses: ichiro-its/ros2-ws-action@v1.0.0
+        uses: ichiro-its/ros2-ws-action/build@v1.0.0
         with:
           distro: jazzy
