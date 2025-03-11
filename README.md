@@ -18,7 +18,7 @@ Description package for robotont including an onboard computer NUC and Realsense
 ### **1. Clone the Repository**
 ```bash
 cd ~/<YOUR_WORKSPACE_NAME_HERE>/src
-git clone https://github.com/robotont/robotont_description.git
+git clone https://github.com/robotont/robotont_nuc_description.git
 ```
 
 ## **Dependencies**
