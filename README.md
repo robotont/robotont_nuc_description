@@ -43,12 +43,7 @@ colcon build --packages-select robotont_nuc_description
 ## **Launch files**
 ### **1. Source workspace**
 ```bash
-#### Load generation 3 model (can also specify 'generation:=3')
-ros2 launch robotont_description display_simulated_robot.launch.py
-```
-```bash
-#### Load generation 2.1 model
-ros2 launch robotont_description display_simulated_robot.launch.py generation:=2.1
+source ~/<YOUR_WORKSPACE_NAME_HERE>/install/setup.bash
 ```
 ### **2. Available launch files**
 Supported parameters:
@@ -64,7 +59,12 @@ ros2 launch robotont_nuc_description display_simulated_robot.launch.py
 #### 2.2. Description
 Starts joint_state_publisher and robot_state_publisher, robot model is published on /robot_description topic.
 ```bash
-ros2 launch robotont_nuc_description description.launch.py
+#### Load generation 3 model (can also specify 'generation:=3')
+ros2 launch robotont_description display_simulated_robot.launch.py
+```
+```bash
+#### Load generation 2.1 model
+ros2 launch robotont_description display_simulated_robot.launch.py generation:=2.1
 ```
 
 ## **License**
