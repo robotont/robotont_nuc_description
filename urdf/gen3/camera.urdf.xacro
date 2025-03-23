@@ -14,7 +14,7 @@
         <link name="${prefix}camera_mount_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://robotont_nuc_description/meshes/gen3/camera_module.STL"/>
+                    <mesh filename="file://$(find robotont_nuc_description)/meshes/gen3/camera_module.STL"/>
                 </geometry>
                 <material name="camera_mount_material">
                     <color rgba="${color}"/>

@@ -11,7 +11,7 @@
         <link name="${prefix}camera_assembly_link1">
             <visual>
                 <geometry>
-                    <mesh filename="package://robotont_nuc_description/meshes/gen2_1/camera_assembly_part1.STL"/>
+                    <mesh filename="file://$(find robotont_nuc_description)/meshes/gen2_1/camera_assembly_part1.STL"/>
                 </geometry>
                 <material name="camera_frame_material">
                     <color rgba="${accent}"/>
@@ -26,7 +26,7 @@
         <link name="${prefix}camera_assembly_link2">
             <visual>
                 <geometry>
-                    <mesh filename="package://robotont_nuc_description/meshes/gen2_1/camera_assembly_part2.STL"/>
+                    <mesh filename="file://$(find robotont_nuc_description)/meshes/gen2_1/camera_assembly_part2.STL"/>
                 </geometry>
                 <material name="camera_base_material">
                     <color rgba="${color}"/>

@@ -12,7 +12,7 @@
         <link name="${prefix}nuc_frame_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://robotont_nuc_description/meshes/gen3/payload_tray.STL"/>
+                    <mesh filename="file://$(find robotont_nuc_description)/meshes/gen3/payload_tray.STL"/>
                 </geometry>
                 <material name="nuc_frame_material">
                     <color rgba="${color}"/>
@@ -39,7 +39,7 @@
             <visual>
                 <origin xyz="0 0 -0.006"/>
                 <geometry>
-                    <mesh filename="package://robotont_nuc_description/meshes/shared/NUC12WSK.STL"/>
+                    <mesh filename="file://$(find robotont_nuc_description)/meshes/shared/NUC12WSK.STL"/>
                 </geometry>
                 <material name="nuc_material">
                     <color rgba="${nuc_color}"/>
