@@ -4,26 +4,15 @@ on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   build:
-    name: Build
+    env:
+      ROS_REPO: ros
+      UPSTREAM_WORKSPACE: ".ci.rosinstall"
+    strategy:
+      matrix:
+        env:
+          - {ROS_DISTRO: jazzy, ROS_REPO: main}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          path: workspace
-
-      - name: Configure VCS
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install vcstool
-
-      - name: Fetch dependencies
-        run: |
-          cd workspace
-          mkdir src
-          vcs import src < dependencies.repos
-
-      - name: Build ROS2 Workspace
-        uses: ichiro-its/ros2-ws-action@v1.0.0
-        with:
-          distro: jazzy
+      - uses: actions/checkout@v4
+      - uses: 'ros-industrial/industrial_ci@master'
+        env: ${{ matrix.env }}

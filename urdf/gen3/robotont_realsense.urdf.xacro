@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
     <xacro:include filename="$(find robotont_description)/urdf/gen3/robotont.urdf.xacro"/>
     <xacro:include filename="$(find robotont_nuc_description)/urdf/gen3/camera.urdf.xacro"/>
     <xacro:include filename="$(find robotont_nuc_description)/urdf/gen3/nuc.urdf.xacro"/>
-    <xacro:arg name= "add_plug" default="false"/>
-    <xacro:arg name= "simulated" default="false"/>
+    <xacro:arg name="simulated" default="false"/>
 
     <xacro:property name="frame_height" value="0.065"/>
     <xacro:property name="frame_ground_clearance" value="0.014"/>
@@ -14,15 +13,15 @@
 
     <!-- Camera assembly -->
     <xacro:camera_macro
-        color="${camera_mount_color}"
-        frame_height="${frame_height}"
-        frame_ground_clearance="${frame_ground_clearance}"
-        prefix="${prefix}"
+            color="${camera_mount_color}"
+            frame_height="${frame_height}"
+            frame_ground_clearance="${frame_ground_clearance}"
+            prefix="${prefix}"
     />
 
     <!-- Realsense -->
     <xacro:if value="$(arg simulated)">
-        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}" use_nominal_extrinsics="true">
+        <xacro:sensor_d435i name="${prefix}camera" parent="${prefix}base_link" use_nominal_extrinsics="true">
             <origin xyz="-0.105 0 0.197" rpy="0 0 0"/>
         </xacro:sensor_d435i>
     </xacro:if>
@@ -34,10 +33,10 @@
 
     <!-- NUC -->
     <xacro:nuc_macro
-        color="${nuc_frame_color}"
-        frame_height="${frame_height}"
-        frame_ground_clearance="${frame_ground_clearance}"
-        prefix="${prefix}"
+            color="${nuc_frame_color}"
+            frame_height="${frame_height}"
+            frame_ground_clearance="${frame_ground_clearance}"
+            prefix="${prefix}"
     />
 
 </robot>

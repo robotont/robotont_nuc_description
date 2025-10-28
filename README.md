@@ -54,7 +54,12 @@ Supported parameters:
 #### 2.1. Display simulated robot
 Displays the robot's model in rviz, starts joint_state_publisher and robot_state_publisher
 ```bash
-ros2 launch robotont_nuc_description display_simulated_robot.launch.py
+#### Load generation 3 model (can also specify 'generation:=3')
+ros2 launch robotont_description display_simulated_robot.launch.py
+```
+```bash
+#### Load generation 2.1 model
+ros2 launch robotont_description display_simulated_robot.launch.py generation:=2.1
 ```
 #### 2.2. Description
 Starts joint_state_publisher and robot_state_publisher, robot model is published on /robot_description topic.

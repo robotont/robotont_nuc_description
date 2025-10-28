@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
+    <xacro:include filename="$(find robotont_description)/urdf/gen3/robotont.urdf.xacro"/>
+    <xacro:include filename="$(find robotont_nuc_description)/urdf/gen3/nuc.urdf.xacro"/>
+    <xacro:arg name="simulated" default="false"/>
+
+    <xacro:property name="frame_height" value="0.065"/>
+    <xacro:property name="frame_ground_clearance" value="0.014"/>
+    <xacro:property name="nuc_frame_color" value="0.75 0.75 0.75 1.0"/>
+    <xacro:property name="camera_mount_color" value="0.75 0.75 0.75 1.0"/>
+
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.03"/>
+            </geometry>
+            <material name="lidar_material">
+                <color rgba="0.3 0.3 0.3 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.03"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                     iyy="0.001" iyz="0.0"
+                     izz="0.001"/>
+        </inertial>
+    </link>
+
+    <joint name="lidar_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0 0 0.157" rpy="0 0 0"/>
+    </joint>
+
+    <!-- NUC -->
+    <xacro:nuc_macro
+            color="${nuc_frame_color}"
+            frame_height="${frame_height}"
+            frame_ground_clearance="${frame_ground_clearance}"
+            prefix="${prefix}"
+    />
+
+</robot>
