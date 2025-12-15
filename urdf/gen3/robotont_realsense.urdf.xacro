@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotont">
+
+    <xacro:property name="primary_color" value="$(arg main_color)"/>
+    <xacro:arg name="second_color"  default="0.75 0.75 0.75 1.0"/>
+    <xacro:property name="secondary_color" value="$(arg second_color)"/>
+
     <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
     <xacro:include filename="$(find robotont_description)/urdf/gen3/robotont.urdf.xacro"/>
     <xacro:include filename="$(find robotont_nuc_description)/urdf/gen3/camera.urdf.xacro"/>
@@ -8,12 +13,10 @@
 
     <xacro:property name="frame_height" value="0.065"/>
     <xacro:property name="frame_ground_clearance" value="0.014"/>
-    <xacro:property name="nuc_frame_color" value="0.75 0.75 0.75 1.0"/>
-    <xacro:property name="camera_mount_color" value="0.75 0.75 0.75 1.0"/>
 
     <!-- Camera assembly -->
     <xacro:camera_macro
-            color="${camera_mount_color}"
+            color="${secondary_color}"
             frame_height="${frame_height}"
             frame_ground_clearance="${frame_ground_clearance}"
             prefix="${prefix}"
@@ -33,7 +36,7 @@
 
     <!-- NUC -->
     <xacro:nuc_macro
-            color="${nuc_frame_color}"
+            color="${secondary_color}"
             frame_height="${frame_height}"
             frame_ground_clearance="${frame_ground_clearance}"
             prefix="${prefix}"
