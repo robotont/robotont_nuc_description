@@ -55,11 +55,20 @@ Supported parameters:
 Displays the robot's model in rviz, starts joint_state_publisher and robot_state_publisher
 ```bash
 #### Load generation 3 model (can also specify 'generation:=3')
-ros2 launch robotont_description display_simulated_robot.launch.py
+ros2 launch robotont_description display_robot_model.launch.py
 ```
 ```bash
+#### Load generation 3 model with specific colors
+ros2 launch robotont_nuc_description display_robot_model.launch.py primary_color:=light_blue secondary_color:=purple
+```
+Supported formats:
+- color name:      primary_color:=lightblue 
+- RGBA (0..1):     primary_color:="0.16 0.65 0.98 1.0"
+- RGBA (0..255):   primary_color:="41 166 250 255"
+- HEX:             primary_color:="#29a6faff" 
+```bash
 #### Load generation 2.1 model
-ros2 launch robotont_description display_simulated_robot.launch.py generation:=2.1
+ros2 launch robotont_description display_robot_model.launch.py generation:=2.1
 ```
 #### 2.2. Description
 Starts joint_state_publisher and robot_state_publisher, robot model is published on /robot_description topic.
